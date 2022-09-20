@@ -8,10 +8,11 @@ import 'base_move_remote_date_source.dart';
 // import 'package:http/http.dart' as http;
 
 class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
+  MovieRemoteDataSource({super.language = 'en'});
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
     final repsonse = await Dio()
-        .get(ApiConstance.nowPlayingMoviesUrlPath)
+        .get('${ApiConstance.nowPlayingMoviesUrlPath}&language=$language')
         .onError((error, stackTrace) {
       throw const ServerException(
           errorMessageModel: ErrorMessageModel(
@@ -35,7 +36,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getPopularMovies() async {
     final repsonse = await Dio()
-        .get(ApiConstance.popularMoviesUrlPath)
+        .get('${ApiConstance.nowPlayingMoviesUrlPath}&language=$language')
         .onError((error, stackTrace) {
       throw const ServerException(
           errorMessageModel: ErrorMessageModel(
@@ -55,7 +56,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
     final repsonse = await Dio()
-        .get(ApiConstance.topRatedMoviesUrlPath)
+        .get('${ApiConstance.nowPlayingMoviesUrlPath}&language=$language')
         .onError((error, stackTrace) {
       throw const ServerException(
           errorMessageModel: ErrorMessageModel(

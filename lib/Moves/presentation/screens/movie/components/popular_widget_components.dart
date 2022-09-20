@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cleanarchwatchapp/Core/strings/constant_strings.dart';
+import '../../../../../Core/localization/app_localizations.dart';
 import '/Moves/presentation/controllers/moviebloc/movies_bloc.dart';
 import '/Moves/presentation/controllers/moviebloc/movies_state.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class PopularWidgetComponent extends StatelessWidget {
                 height: 170.0,
                 child: Center(
                     child: Text(
-                  ConstantStrings.fechingDataError,
+                  AppLocalizations.of(context).fechingErrorMessage,
                   style: Theme.of(context).textTheme.bodyMedium,
                 )));
           case RequestState.loaded:
@@ -48,7 +48,7 @@ class PopularWidgetComponent extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          // TODO : NAVIGATE TO A Screen
+                          // TODO : NAVIGATE TO Movie Detail Screen
                         },
                         child: ClipRRect(
                           borderRadius:

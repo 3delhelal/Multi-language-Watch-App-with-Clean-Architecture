@@ -1,3 +1,5 @@
+import 'package:cleanarchwatchapp/Core/localization/app_localizations.dart';
+
 import '/Moves/presentation/screens/movie/components/now_playing_widget_component.dart';
 import '/Moves/presentation/screens/movie/components/popular_widget_components.dart';
 import '/Moves/presentation/screens/movie/components/top_rated_widget_component.dart';
@@ -15,68 +17,53 @@ class MoviesScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const NowPlayingWidgetComponent(),
-            Container(
-              margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Popular",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  InkWell(
-                    hoverColor: Colors.white10,
-                    onTap: () {
-                      // TODO : NAVIGATE TO A Screen
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text('See More',
-                              style: Theme.of(context).textTheme.headlineSmall),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            popularAndTopRatedRowMethod(
+              context,
+              message: AppLocalizations.of(context).popularMessage,
+              buttonCallback: () {
+                // TODO : NAVIGATE TO Full Popular Screen
+              },
             ),
             const PopularWidgetComponent(),
-            Container(
-              margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Top Rated",
-                      style: Theme.of(context).textTheme.headlineMedium),
-                  InkWell(
-                    hoverColor: Colors.white10,
-                    onTap: () {
-                      // TODO : NAVIGATE TO A Screen
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text('See More',
-                              style: Theme.of(context).textTheme.headlineSmall),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            popularAndTopRatedRowMethod(
+              context,
+              message: AppLocalizations.of(context).topRatedMessage,
+              buttonCallback: () {
+                // TODO : NAVIGATE TO Full Top Rated Screen
+              },
             ),
             const TopRatedWidgetComponent(),
           ],
         ),
+      ),
+    );
+  }
+
+  Container popularAndTopRatedRowMethod(BuildContext context,
+      {required String message, required Function() buttonCallback}) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(message, style: Theme.of(context).textTheme.headlineMedium),
+          InkWell(
+            hoverColor: Colors.white10,
+            onTap: buttonCallback,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(AppLocalizations.of(context).seeMoreMessage,
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

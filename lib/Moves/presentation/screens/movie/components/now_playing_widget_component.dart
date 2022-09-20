@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import '/Core/strings/constant_strings.dart';
+import '../../../../../Core/localization/app_localizations.dart';
 import '/Moves/presentation/controllers/moviebloc/movies_bloc.dart';
 import '/Moves/presentation/controllers/moviebloc/movies_state.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class NowPlayingWidgetComponent extends StatelessWidget {
             return SizedBox(
               height: 400,
               child: Center(
-                child: Text(ConstantStrings.fechingDataError,
+                child: Text(AppLocalizations.of(context).fechingErrorMessage,
                     style: Theme.of(context).textTheme.bodyMedium),
               ),
             );
@@ -44,7 +44,7 @@ class NowPlayingWidgetComponent extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('screendetailNavigate'),
                       onTap: () {
-                        // TODO : NAVIGATE TO A Screen
+                        // TODO : NAVIGATE TO A Movie Detail Screen
                       },
                       child: Stack(
                         children: [
@@ -91,7 +91,8 @@ class NowPlayingWidgetComponent extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 4.0),
                                       Text(
-                                        'Now Playing'.toUpperCase(),
+                                        AppLocalizations.of(context)
+                                            .nowPlayingMessage,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall,
